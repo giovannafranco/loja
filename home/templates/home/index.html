@@ -1,5 +1,27 @@
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="container">
+		{% if mensagem %}
+		<div class="col-md-12">
+			<span class="col-md-12 alert alert-success">{{mensagem}}</span>
+		</div>
+		{% endif %}
 
-<h1>{{ message }}</h1>
+		<div class="col-md-12">
+			<h1>Produtos</h1>
+			<ul>
+			{% for p in produtos %}
+				<li>{{p.descricao}}</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from home.views import home
+from home.views import home, adicionar_produto_carrinho
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'', home, name='home'),
+    url(r'^$', home, name='home'),
+    url(r'^produtos/(?P<produto_id>[\d]+)/$', adicionar_produto_carrinho, name='adicionar_produto_carrinho')
 ]
