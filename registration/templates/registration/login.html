@@ -1,0 +1,32 @@
+{% extends "registration/base.html" %}
+{% load staticfiles %}
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static "css/sigin.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<form class="form" method="post" action="{% url 'django.contrib.auth.views.login' %}"> {% csrf_token %}
+    <div class="col-md-12">
+        {% if form.errors %}
+            <p class="alert alert-danger">Usuário ou senha inválido. Por favor tente novamente.</p>
+        {% endif %}
+    </div>
+
+    <h2 class="form-signin-heading">Seja bem vindo!</h2>
+    
+    <label for="{{form.username.auto_id}}" class="sr-only">form.username.label_tag</label>
+    <input type="{{form.username.widget}}" id="{{form.username.auto_id}}" name="{{form.username.name}}" class="form-control" placeholder="Email" required autofocus>
+
+    <label for="{{form.password.auto_id}}" class="sr-only">form.password.label_tag</label>
+    <input type="password" id="{{form.password.auto_id}}" name="{{form.password.name}}" class="form-control" required>
+    
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+
+    </div>
+</form>
+</div>
+</div>
+
+{% endblock %}

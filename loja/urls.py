@@ -20,7 +20,9 @@ from home.views import home, adicionar_produto_carrinho
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^$', home, name='home'),
+    url(r'^login/$', 'django.contrib.auth.views.login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout'),
+    url(r'^admin/', include(admin.site.urls)),
     url(r'^produtos/(?P<produto_id>[\d]+)/$', adicionar_produto_carrinho, name='adicionar_produto_carrinho')
 ]
