@@ -1,20 +1,29 @@
 {% load bootstrap3 %}
 {% bootstrap_css %}
-{% bootstrap_javascript %}
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
     {% block extra_css %}{% endblock %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
     {% if messages %}
         {% for message in messages %}
-            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            <p {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</p>
         {% endfor %}
     {% endif %}
     
+    <div class="col-md-12">
+        <a class="pull-right" href="{% url 'mostrar_carrinho' %}">Meu carrinho</a>
+        <a class="pull-right" href="{% url 'home' %}">Home&nbsp;|&nbsp;&nbsp;</a>
+    </div>
+
     {% block content %}{% endblock %}
+
+    {% bootstrap_javascript %}
+    
+    {% block extra_js %}{% endblock %}
 </body>
 </html>

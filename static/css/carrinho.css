@@ -1,0 +1,16 @@
+.valorTotal {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.clear {
+    clear: both;
+}
+
+.ponteiroCursor {
+    cursor: pointer;
+}
+
+.largura50 {
+    width: 50px;
+}

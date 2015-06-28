@@ -1,0 +1,61 @@
+{% extends 'registration/base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static "css/carrinho.css" %}">
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript" src="{% static "js/carrinho.js" %}"></script>
+
+<script type="text/javascript">
+  $(function() {
+    ligaCliqueBtnAtualizarItem();
+  });
+</script>
+
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Itens Carrinho</div>
+      {%if produtos %}
+      <table class="table"> 
+        <tr>
+          <th>#</th>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+          <th>Ações</th>
+        </tr>
+        {% for produto in produtos %}
+          <tr>
+            <td>{{produto.id}}</td>
+            <td>{{produto.produto.descricao}}</td>
+            <td>
+              <input id="quantidade-{{produto.id}}" type="text" value="{{ produto.quantidade }}" class="largura50">
+              <span id="idBtnAtualizar-{{produto.id}}" class="glyphicon glyphicon-refresh ponteiroCursor"></span>
+            </td>
+            <td><span id="valorItem-{{produto.id}}">{{produto.valor}}</span></td>
+            <td>
+              <button class="btn btn-danger btn-sm" type="button" value="Remover" title="Remover">  
+              <span class="glyphicon glyphicon-trash"></span></button>
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+          <p>Seu carrinho ainda está vazio ;'(</p>
+      {% endif %}
+      <div class="panel-footer">
+        <span class="pull-right valorTotal">Total: <span id="valorTotal">{{ total }}</span></span>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

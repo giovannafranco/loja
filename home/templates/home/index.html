@@ -1,19 +1,21 @@
 {% extends 'registration/base.html' %}
-{% block content %}	
-	{% if mensagem %}
-	<div class="col-md-12">
-		<span class="col-md-12 alert alert-success">{{mensagem}}</span>
-	</div>
-	{% endif %}
-
+{% block content %}
+<div class="container">
+    <div class="col-md-12">
 	<h1>Produtos</h1>
 	<ul>
 	{% for p in produtos %}
-		<li>{{p.id}}</li>
-		<li>{{p.descricao}}</li>
-		<li>{{p.valor}}</li>
-		<li><img src="{{p.imagem.url}}"></li>
-		<li>{{p.qtdEstoque}}</li>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<p>{{p.descricao}}</p>
+					<h4>{{p.valor}}</h4>
+					<a class="btn btn-primary" href="{% url 'adicionar_produto_carrinho' p.slug %}">Comprar</a>
+				</div>
+			</div>
+		</div>
 	{% endfor %}
 	</ul>
-{% endblock %}	
+	</div>
+</div>
+{% endblock %}
