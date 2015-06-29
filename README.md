@@ -1,8 +1,13 @@
-
 cd loja/
+
+# Instalar pacotes de desenvolvedor Python
+sudo apt-get install python-dev
 
 # Criar ambiente virtual
 mkvirtualenv loja-dw
+
+# Ativar ambiente virtual
+workon loja-dw
 
 # Instalar dependências
 pip install -r requirements.txt
