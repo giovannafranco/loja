@@ -17,7 +17,7 @@
             <li><a class="pull-right" href="{% url 'home' %}">Home</a></li>
             <li><a class="pull-right" href="{% url 'mostrar_carrinho' %}">Meu carrinho</a></li>
             <li><a class="pull-right" href="{% url 'minhas_compras' %}">Minhas Compras</a></li>
-            <li><a class="pull-right" href="/logout">Logout</a></li>
+            {% if user.is_authenticated %}<li><a class="pull-right" href="/logout">Logout</a></li>{% endif %}
           </ul>
         </div>
       </div>
