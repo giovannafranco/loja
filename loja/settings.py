@@ -62,9 +62,9 @@ DATABASES = {
     }
 }
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -78,8 +78,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
-LOGIN_URL = 'django.contrib.auth.views.login'
+MEDIA_URL = '/fotos_produto/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'django.contrib.auth.views.login'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'

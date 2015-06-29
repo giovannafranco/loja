@@ -14,3 +14,11 @@
 .largura50 {
     width: 50px;
 }
+
+.carrinhoVazio {
+    color: #f32;
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+    padding: 10px 0;
+}

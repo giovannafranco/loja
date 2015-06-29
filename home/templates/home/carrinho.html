@@ -24,38 +24,45 @@
     <div class="panel panel-default">
       <div class="panel-heading">Itens Carrinho</div>
       {%if produtos %}
-      <table class="table"> 
-        <tr>
-          <th>#</th>
-          <th>Nome</th>
-          <th>Quantidade</th>
-          <th>Valor</th>
-          <th>Ações</th>
-        </tr>
-        {% for produto in produtos %}
+        <table class="table"> 
           <tr>
-            <td>{{produto.id}}</td>
-            <td>{{produto.produto.descricao}}</td>
-            <td>
-              <input id="quantidade-{{produto.id}}" type="text" value="{{ produto.quantidade }}" class="largura50">
-              <span id="idBtnAtualizar-{{produto.id}}" class="glyphicon glyphicon-refresh ponteiroCursor"></span>
-            </td>
-            <td><span id="valorItem-{{produto.id}}">{{produto.valor}}</span></td>
-            <td>
-              <button class="btn btn-danger btn-sm" type="button" value="Remover" title="Remover">  
-              <span class="glyphicon glyphicon-trash"></span></button>
-            </td>
+            <th></th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>Sub Total</th>
+            <th>Ações</th>
           </tr>
-        {% endfor %}
-      </table>
+          {% for produto in produtos %}
+            <tr>
+              <td><img src="{{produto.produto.imagem.url}}" title='{{produto.produto.descricao}}' width="120" height="100"></td>
+              <td>{{produto.produto.descricao}}</td>
+              <td>
+                <input id="quantidade-{{produto.id}}" type="text" value="{{ produto.quantidade }}" class="largura50">
+                <span id="idBtnAtualizar-{{produto.id}}" class="glyphicon glyphicon-refresh ponteiroCursor"></span>
+              </td>
+              <td>{{produto.produto.valor}}</td>
+              <td><span id="valorItem-{{produto.id}}">{{produto.valor}}</span></td>
+              <td>
+                <a href="{% url 'remover_produto_carrinho' produto.id %}" class="btn btn-danger btn-sm" title="Remover">  
+                <span class="glyphicon glyphicon-trash"></span></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
       {% else %}
-          <p>Seu carrinho ainda está vazio ;'(</p>
+          <p class="carrinhoVazio">Seu carrinho ainda está vazio :'(</p>
       {% endif %}
       <div class="panel-footer">
         <span class="pull-right valorTotal">Total: <span id="valorTotal">{{ total }}</span></span>
         <div class="clear"></div>
       </div>
     </div>
+    {% if produtos %}
+      <a href="{% url 'fechar_compra' %}" class="btn btn-success btn-lg pull-right">
+        <span class="glyphicon glyphicon-ok"></span> Finalizar Compra
+      </a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

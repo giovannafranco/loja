@@ -1,0 +1,25 @@
+{% extends "registration/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="col-md-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">Minhas Compras</div>
+      <table class="table"> 
+        <tr>
+          <th>Data da compra</th>
+        </tr>
+        {% for compra in compras %}
+          <tr>
+            <td><a href="{% url 'detalhe_compra' compra.id %}">{{compra.data|date:'d-m-Y H:i'}}</a></td>
+          </tr>
+        {% endfor %}
+      </table>
+      <div class="panel-footer">
+        <span class="pull-right">Total de compras: {{ compras|length }}</span>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

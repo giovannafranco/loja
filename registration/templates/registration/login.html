@@ -1,4 +1,6 @@
-{% extends "registration/base.html" %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+
 {% load staticfiles %}
 {% block extra_css %}
 <link rel="stylesheet" type="text/css" href="{% static "css/sigin.css" %}">
@@ -7,7 +9,7 @@
 {% block content %}
 
 <div class="container">
-<form class="form" method="post" action="{% url 'django.contrib.auth.views.login' %}"> {% csrf_token %}
+<form class="form" method="post" action="{% url 'django.contrib.auth.views.login' %}?next={{next}}"> {% csrf_token %}
     <div class="col-md-12">
         {% if form.errors %}
             <p class="alert alert-danger">Usuário ou senha inválido. Por favor tente novamente.</p>

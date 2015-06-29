@@ -4,20 +4,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}Loja{% endblock %}</title>
     {% block extra_css %}{% endblock %}
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-    {% if messages %}
-        {% for message in messages %}
-            <p {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</p>
-        {% endfor %}
-    {% endif %}
     
-    <div class="col-md-12">
-        <a class="pull-right" href="{% url 'mostrar_carrinho' %}">Meu carrinho</a>
-        <a class="pull-right" href="{% url 'home' %}">Home&nbsp;|&nbsp;&nbsp;</a>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a class="pull-right" href="{% url 'home' %}">Home</a></li>
+            <li><a class="pull-right" href="{% url 'mostrar_carrinho' %}">Meu carrinho</a></li>
+            <li><a class="pull-right" href="{% url 'minhas_compras' %}">Minhas Compras</a></li>
+            <li><a class="pull-right" href="/logout">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <div class="col-md-12" id="blocoMensagem">
+      {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'error' %}
+            <p class="alert alert-danger">{{ message }}</p>
+          {% else %}
+            <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+          {% endif %}
+
+        {% endfor %}
+      {% endif %}
     </div>
 
     {% block content %}{% endblock %}

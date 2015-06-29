@@ -1,0 +1,32 @@
+{% extends "registration/base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+  <div class="container">
+    <div class="col-md-12">
+      <table class="table">
+        <tr>
+          <th></th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+          <th>Valor</th>
+          <th>Sub Total</th>
+        </tr>
+        {% for item in items %}
+          <tr>
+            <td><img src="{{item.produto.imagem.url}}" title="{{item.produto.descricao}}" width="120" height="100"></td>
+            <td>{{item.produto.descricao}}</td>
+            <td>{{item.quantidade}}</td>
+            <td>{{item.produto.valor}}</td>
+            <td>{{item.valor}}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <div class="row">
+        <a class="btn btn-default" style="margin-bottom:20px;" href="{% url 'minhas_compras' %}">Minhas Compras</a>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

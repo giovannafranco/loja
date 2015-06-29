@@ -1,21 +1,55 @@
 {% extends 'registration/base.html' %}
+{% load staticfiles %}
+
+{% block extra_js %}
+<script type="text/javascript">
+	$(function() {
+		$('#filtroConsulta option[value="{{categoria_selecionada}}"]').attr('selected', 'selected');
+
+		$('#filtroConsulta').on('change', function(e){
+			window.location =  window.location.origin + '/produtos/' + this.value;
+		});
+	});
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="container">
+
     <div class="col-md-12">
-	<h1>Produtos</h1>
-	<ul>
-	{% for p in produtos %}
-		<div class="col-md-4">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<p>{{p.descricao}}</p>
-					<h4>{{p.valor}}</h4>
-					<a class="btn btn-primary" href="{% url 'adicionar_produto_carrinho' p.slug %}">Comprar</a>
+    <h1>Produtos</h1>
+    <div class="row">
+		<div class="col-md-6"></div>
+		<div class="col-md-6">
+			<label>&nbsp;</label>
+			<select id="filtroConsulta" class="form-control">
+				<option value="todos">Selecionar</option>
+				{% for categoria in categorias %}
+					<option value="{{categoria.descricao|slugify}}" {% if categoria.descricao == categoria_selecionada %} selected {% endif %}>{{categoria.descricao|title}}</option>
+				{% endfor %}
+
+			</select>
+		</div>
+	</div>
+	<div class="row">&nbsp;</div>
+	<div class="row">
+		<ul>
+		{% for p in produtos %}
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-body" style="text-align:center">
+						<img src="{{p.imagem.url}}" title='{{p.descricao}}' width="260" height="200">
+						<h4>{{p.descricao}}</h4>
+						<h4>{{p.valor}}</h4>
+						<a class="btn btn-primary" href="{% url 'detalhe_produto' p.slug %}">Comprar</a>
+					</div>
 				</div>
 			</div>
-		</div>
-	{% endfor %}
-	</ul>
+		{% empty %}
+			<h4>Não existem produtos para essa categoria!</h4>
+		{% endfor %}
+		</ul>
 	</div>
+</div>
 </div>
 {% endblock %}
