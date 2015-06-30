@@ -13,7 +13,7 @@
           <th>Valor</th>
           <th>Sub Total</th>
         </tr>
-        {% for item in items %}
+        {% for item in items %} <!--For para iterar os itens de compra que devem aparecer na tela-->
           <tr>
             <td><img src="{{item.produto.imagem.url}}" title="{{item.produto.descricao}}" width="120" height="100"></td>
             <td>{{item.produto.descricao}}</td>

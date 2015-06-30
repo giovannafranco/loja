@@ -9,7 +9,7 @@
         <tr>
           <th>Data da compra</th>
         </tr>
-        {% for compra in compras %}
+        {% for compra in compras %} <!--Fom que itera as compras feitas pelo usuário logado-->
           <tr>
             <td><a href="{% url 'detalhe_compra' compra.id %}">{{compra.data|date:'d-m-Y H:i'}}</a></td>
           </tr>

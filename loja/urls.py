@@ -9,7 +9,6 @@ from carrinho.views import adicionar_produto_carrinho, \
     remover_produto_carrinho, fechar_compra, minhas_compras, detalhe_compra
 from produto.views import detalhe_produto
 
-
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^login/$', 'django.contrib.auth.views.login'),

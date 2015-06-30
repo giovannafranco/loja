@@ -33,7 +33,7 @@
             <th>Sub Total</th>
             <th>Ações</th>
           </tr>
-          {% for produto in produtos %}
+          {% for produto in produtos %} <!--For que itera os produtos que estão no carrinho-->
             <tr>
               <td><img src="{{produto.produto.imagem.url}}" title='{{produto.produto.descricao}}' width="120" height="100"></td>
               <td>{{produto.produto.descricao}}</td>
